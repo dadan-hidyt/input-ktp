@@ -19,7 +19,7 @@ $dataResult = $data->fetch(PDO::FETCH_OBJ);
                         </label>
                         <br>
                         <small id="meter"></small>
-                        <input min="16" max="16" value="<?= $dataResult->nik; ?>" class='w3-input w3-border w3-round' required="true" autofocus='true' type="number" name="nik" id="nik" placeholder="NIK">
+                        <input value="<?= $dataResult->nik; ?>" class='w3-input w3-border w3-round' required="true" autofocus='true' type="number" name="nik" id="nik" placeholder="NIK">
                     </div>
                     <div class="w3-margin-bottom">
                         <label for="NAMA LENGKAP">
@@ -133,15 +133,15 @@ $dataResult = $data->fetch(PDO::FETCH_OBJ);
            //check runtime 
 
         }
-         $.ajax({
-                url : 'runtime_check.php?nik='+e.target.value,
-                type : "GET",
-                success : function (e) {
-                    if (e == 'true') {
-                        $('#meter').html("NIK sudah ada di database! Silahkan check lagi");
-                    }
-                }
-           })
+         // $.ajax({
+         //        url : 'runtime_check.php?nik='+e.target.value,
+         //        type : "GET",
+         //        success : function (e) {
+         //            if (e == 'true') {
+         //                $('#meter').html("NIK sudah ada di database! Silahkan check lagi");
+         //            }
+         //        }
+         //   })
     })
 </script>
     <?php 

@@ -2,7 +2,7 @@
  <br>
    <div style="padding:16px 32px">
         <h3>DATA KTP</h3>
-
+        
         <div class="w3-row-padding w3-stretch">
           <div class="w3-col">
             <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
@@ -20,29 +20,13 @@
                         <option value="semua">Semuanya</option>
                         <option value="me">Yang saya inputkan</option>
                     </select>
-                <small>Desa:</small>
-                     <select style="padding: 3px;" id="filter_desa">
-                        <option value="">--pilih desa--</option>
-                       <?php 
-                       $data = [];
-                       foreach(connect()->query("SELECT * FROM ktp group BY kelurahan_desa") as $value) {
-                            $data[$value['kelurahan_desa']]  = $value['kelurahan_desa'];
-                       }
-                       foreach($data as $value) {
-                             ?>
-                           <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                        <?php
-                       }
-                
-
-                        ?>
-                    </select>
+              
                      <small>Kecamatan:</small>
                      <select style="padding: 3px;" id="filter_kecamatan">
                         <option value="">--pilih kecamatan--</option>
                        <?php 
                        $data_group = [];
-                       foreach(connect()->query("SELECT * FROM ktp group BY kecamatan") as $value) {
+                       foreach(connect()->query("SELECT * FROM ktp") as $value) {
                             $data_group[$value['kecamatan']]  = $value['kecamatan'];
                        }
                        foreach($data_group as $value) {
@@ -53,6 +37,11 @@
                 
 
                         ?>
+                    </select>
+
+                      <small>Desa:</small>
+                     <select style="padding: 3px;" id="filter_desa">
+                        <option value="">--pilih desa--</option>
                     </select>
               </header>
             <style type="text/css">
@@ -95,7 +84,6 @@
               </div>
             </div>
           </div>
-         
         </div>   
       </div>
     <script>
@@ -106,10 +94,16 @@
         document.querySelector('#filter').onchange = function(e) {
             table.ajax.url('ajax_get_data_ktp.php?filter='+e.target.value).load();  
         }
+        
+         document.querySelector('#filter_kecamatan').onchange = function(e) {
+           const res = $.get('ajax_get_data_ktp.php?filter_desa_by_kecamatan&kecamatan='+e.target.value);
+           res.then(function(e){
+              $('#filter_desa').html(e);
+           })
+            table.ajax.url('ajax_get_data_ktp.php?filter_kecamatan&kecamatan='+e.target.value).load();  
+          
+        }
         document.querySelector('#filter_desa').onchange = function(e) {
             table.ajax.url('ajax_get_data_ktp.php?filter_desa&desa='+e.target.value).load();  
-        }
-         document.querySelector('#filter_kecamatan').onchange = function(e) {
-            table.ajax.url('ajax_get_data_ktp.php?filter_kecamatan&kecamatan='+e.target.value).load();  
         }
     </script>

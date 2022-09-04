@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="assets/icons/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/css/w3pro-4.13.css">
 	<link rel="stylesheet" href="assets/css/w3-theme.css">
-	<link rel="stylesheet" href="assets/css/admin-styles.css">
+	<link rel="stylesheet" href="assets/css/admin-styles.css?e">
 	<link rel="stylesheet" href="assets/css/scrollbar.css">
 	<link rel="stylesheet" href="assets/style.css?8vsd">
     <title><?= $title ?? ''; ?></title>

@@ -34,18 +34,12 @@ if(!isset($_SESSION['login'])) {
 }
 try {
     if(tambah_data_ktp()) {
-       ?>
-      <div class="messages">
-        <h1>DATA BERHASIL DI MASUKAN KE DATABASE!</h1>
-         <button onclick="window.location.href = 'admin_dashboard.php?halaman=input-data';">KEMBALI</button>
-      </div>
-       <?php
+      $_SESSION['error_tb_data'] = '<p class="alert success">data berhasil di tambahkan!</p>';
+      header('location:admin_dashboard.php?halaman=input-data&tambah_data=true');
     } 
 } catch (Exception $th) {
-    ?>
-    <div class="messages">
-      <h1><?= $th->getMessage() ?></h1>
-      <button onclick="window.history.back();">PERIKSA ULANG</button>
-    </div>
-    <?php
+      $_SESSION['error_tb_data'] =  $_SESSION['error_tb_data'] = '<p class="alert">'.$th->getMessage().'</p>';
+      $_SESSION['data_before'] = $_POST;
+      header('location:admin_dashboard.php?halaman=input-data&tambah_data=false');
+
 }

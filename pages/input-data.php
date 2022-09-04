@@ -1,5 +1,11 @@
-<h3>INPUT DATA</h3>
+<br>
+<br>
 <div style="padding:16px 32px" class="w3-row-padding w3-stretch">
+    <h3>INPUT DATA</h3>
+    <?php if (isset($_SESSION['error_tb_data'])): ?>
+          <?= $_SESSION['error_tb_data']; ?>
+          <?php unset($_SESSION['error_tb_data']); ?>
+    <?php endif ?>
     <div class="w3-col">
         <div class="w3-white w3-round w3-margin-bottom w3-border" style="">
               <header class="w3-padding-large w3-large w3-border-bottom" style="font-weight: 500">INPUT DATA KTP</header>
@@ -12,20 +18,20 @@
                         </label>
                         <br>
                         <small id="meter"></small>
-                        <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="number" name="nik" id="nik" placeholder="NIK">
+                        <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="number" name="nik" id="nik" value="<?php echo $_SESSION['data_before']['nik'] ?? '' ?>" placeholder="NIK">
                     </div>
                     <div class="w3-margin-bottom">
                         <label for="NAMA LENGKAP">
                             NAMA LENGKAP
                         </label>
-                        <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap">
+                        <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="nama_lengkap" id="nama_lengkap"  value="<?php echo $_SESSION['data_before']['nama_lengkap'] ?? '' ?>" placeholder="Nama Lengkap">
                     </div>
                     <div class="w3-margin-bottom">
                         <label for="TEMPAT TANGGAL LAHIR">
                             TEMPAT TANGGAL LAHIR
                         </label>
                         <div class="input class='w3-input w3-border w3-round'" required="true" autofocus='true'>
-                            <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="tempat_lahir" id="tempat_lahir" placeholder="Tempat Lahir">
+                            <input  value="<?php echo $_SESSION['data_before']['tempat_lahir'] ?? '' ?>" class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="tempat_lahir" id="tempat_lahir" placeholder="Tempat Lahir">
                             <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="date" name="tanggal_lahir" id="tanggal_lahir" min="10-9-1945" max="10-9-2008">
                         </div>
                     </div>
@@ -53,31 +59,31 @@
                         <label for="ALAMAT">
                             DUSUN
                         </label>
-                        <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="Alamat" id="Alamat" placeholder="Ketikan alamat sesuai KTP">
+                        <input  value="<?php echo $_SESSION['data_before']['Alamat'] ?? '' ?>" class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="Alamat" id="Alamat" placeholder="Ketikan alamat sesuai KTP">
                     </div>
                      <div class="w3-margin-bottom">
                         <label for="ALAMAT">
                             RT
                         </label>
-                        <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="RT" id="Alamat" placeholder="Ketikan RT (exp: 03)">
+                        <input  value="<?php echo $_SESSION['data_before']['RT'] ?? '' ?>" class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="RT" id="Alamat" placeholder="Ketikan RT (exp: 03)">
                     </div>
                     <div class="w3-margin-bottom">
                         <label for="ALAMAT">
                             RW
                         </label>
-                        <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="rw" id="Alamat" placeholder="Ketikan RW (exp: 03)">
+                        <input  value="<?php echo $_SESSION['data_before']['rw'] ?? '' ?>"  class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="rw" id="Alamat" placeholder="Ketikan RW (exp: 03)">
                     </div>
                     <div class="w3-margin-bottom">
                         <label for="ALAMAT">
                                 KECAMATAN
                         </label>
-                        <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="kecamatan" id="Alamat" placeholder="Ketikan kecamatan">
+                        <input  value="<?php echo $_SESSION['data_before']['kecamatan'] ?? '' ?>" class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="kecamatan" id="Alamat" placeholder="Ketikan kecamatan">
                     </div>
                     <div class="w3-margin-bottom">
                         <label for="ALAMAT">
                             KELURAHAN/DESA
                         </label>
-                        <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="desa" id="Alamat" placeholder="Ketikan kelurahan atau desa">
+                        <input  value="<?php echo $_SESSION['data_before']['desa'] ?? '' ?>" class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="desa" id="Alamat" placeholder="Ketikan kelurahan atau desa">
                     </div>
                     
                     <div class="w3-margin-bottom">
@@ -95,19 +101,19 @@
                         <label for="STATUS PERKAWINAN">
                             STATUS PERKAWINAN
                         </label>
-                        <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="Status Perkawinan" id="Status Perkawinan" placeholder="Status Perkawinan">
+                        <input  value="<?php echo $_SESSION['data_before']['Status_Perkawinan'] ?? '' ?>" class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="Status Perkawinan" id="Status Perkawinan" placeholder="Status Perkawinan">
                     </div>
                     <div class="w3-margin-bottom">
                         <label for="PEKERJAAN">
                             PEKERJAAN
                         </label>
-                        <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="Pekerjaan" id="Pekerjaan" placeholder="Pekerjaan">
+                        <input value="<?php echo $_SESSION['data_before']['Pekerjaan'] ?? '' ?>"  class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="Pekerjaan" id="Pekerjaan" placeholder="Pekerjaan">
                     </div>
                     <div class="w3-margin-bottom">
                         <label for="KEWARGANEGARAAN">
                             KEWARGANEGARAAN
                         </label>
-                        <input class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="Kewarganegaraan" id="Kewarganegaraan" placeholder="Kewarganegaraan">
+                        <input value="<?php echo $_SESSION['data_before']['Kewarganegaraan'] ?? '' ?>" class='w3-input w3-border w3-round' required="true" autofocus='true' type="text" name="Kewarganegaraan" id="Kewarganegaraan" placeholder="Kewarganegaraan">
                     </div>
                     <button  name='post_data' type="submit" class="w3-button w3-primary w3-round">Tambah</button>
                 </div>

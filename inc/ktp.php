@@ -271,4 +271,38 @@ WHERE `nik` = :nikOriginal");
     
 }
 
+function get_data_desa_by_kecamatan($kecamatan) {
+     $i = 0;
+     foreach (connect()->query("SELECT * FROM ktp WHERE kecamatan='$kecamatan' ORDER BY nama ASC") as  $value) {
+        $i++;
+        $data['data'][] = [
+            $i,
+            $value['nama'],
+            (string)$value['nik'],
+            $value['jenis_kelamin'],
+            sprintf('%s,%s',$value['tempat_lahir'], strtoupper(tanggal_indonesia($value['tanggal_lahir']))),
+            sprintf('%s,RT %s/RW %s DESA/KEL %s, KEC. %s',$value['alamat'],$value['rt'],$value['rw'],$value['kelurahan_desa'],$value['kecamatan']),
+            $value['agama'],
+            $value['status_perkawinan'],
+            $value['pekerjaan'],
+            $value['kewarganegaraan'],
+            $value['input_date'],
+            sprintf('<a onclick="return confirm(\'Apakah anda yakin!\');" href="%s?id=%s" class="w3-button w3-danger">
+                                Hapus
+                            </a>','proses_delete.php',$value['nik']).
+            sprintf('<a href="%s&id=%s" class="w3-button w3-success">
+                                Edit data
+                            </a>','?halaman=edit-data',$value['nik'])
+            ,
+        ];
+    }
+
+
+    if (empty($data)) {
+        return array('data'=>[]);
+    } else {
+        return $data;
+    }
+}
+
 ?>
